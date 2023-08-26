@@ -1,0 +1,40 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.4.2'
+        classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:4.3.0.3225'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'org.sonarqube'
+
+sonarqube {
+
+    androidVariant "debug"
+
+    properties {
+        // sonar-project.properties is not handled by plugin, need to read it manually
+        Properties sonarProperties = new Properties()
+        sonarProperties.load(file('sonar-project.properties').newReader())
+        sonarProperties.each {
+            property it.key, it.value
+            println("Sonar Properties: " + it.key + ": " + it.value)
+        }
+
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.organization", "protoshadowmaker"
+        property "sonar.projectKey", "protoshadowmaker_sonarworkaround"
+        property "sonar.projectName", "sonarworkaround"
+    }
+}
