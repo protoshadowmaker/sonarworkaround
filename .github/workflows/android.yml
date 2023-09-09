@@ -25,4 +25,4 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Run Sonar
-      script: ./gradlew sonar -Dsonar.token=${SONAR_TOKEN}
+      run: ./gradlew sonar -Dsonar.token=${SONAR_TOKEN}
