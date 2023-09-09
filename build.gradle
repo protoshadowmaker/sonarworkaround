@@ -24,14 +24,16 @@ sonarqube {
     androidVariant "debug"
 
     properties {
-        // sonar-project.properties is not handled by plugin, need to read it manually
-        Properties sonarProperties = new Properties()
-        sonarProperties.load(file('sonar-project.properties').newReader())
-        sonarProperties.each {
-            property it.key, it.value
-            println("Sonar Properties: " + it.key + ": " + it.value)
+        // create sonar-project.properties file and put project token
+        def propertiesFile = file('sonar-project.properties')
+        if(propertiesFile.exists()) {
+            Properties sonarProperties = new Properties()
+            sonarProperties.load(propertiesFile.newReader())
+            sonarProperties.each {
+                property it.key, it.value
+                println("Sonar Properties: " + it.key + ": " + it.value)
+            }
         }
-
         property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.organization", "protoshadowmaker"
         property "sonar.projectKey", "protoshadowmaker_sonarworkaround"
