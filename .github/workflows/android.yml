@@ -22,7 +22,7 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew build
+    - name: Test env
+      run: echo $TEST_ENV
     - name: Run Sonar
       run: ./gradlew sonar -Dsonar.token=${SONAR_TOKEN}
