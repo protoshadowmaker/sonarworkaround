@@ -30,8 +30,9 @@ jobs:
       run: curl https://sonarcloud.io/api/server/version
     - name: Check JDK 8 path
       run: |
-        $envName = "JAVA_HOME_8_${env:RUNNER_ARCH}"
-        $JavaVersionPath = [Environment]::GetEnvironmentVariable($envName)
+        $envName = "JAVA_HOME_8_$($env:RUNNER_ARCH)"
+        echo "$envName"
+        $JavaVersionPath = [System.Environment]::GetEnvironmentVariable($envName)
         echo "$JavaVersionPath"
     - name: Run Sonar
       run: ./gradlew sonar -Pmodule.sonar.java.jdkHome='echo "JAVA_HOME_8_${env:RUNNER_ARCH}"' "-Dsonar.token=${{secrets.SONAR_TOKEN}}"
