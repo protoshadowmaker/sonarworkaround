@@ -34,4 +34,4 @@ jobs:
         echo "Java 8 version: $JAVA_8_VERSION"
         export JAVA_8_PATH=$(printenv $JAVA_8_VERSION)
         echo "Java 8 path: $JAVA_8_PATH"
-        ./gradlew sonar -Pmodule.sonar.java.jdkHome=$JAVA_8_PATH "-Dsonar.token=${{secrets.SONAR_TOKEN}}"
+        ./gradlew sonar -Pjdk8Home=$JAVA_8_PATH "-Dsonar.token=${{secrets.SONAR_TOKEN}}"

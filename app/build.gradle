@@ -30,7 +30,7 @@ android {
 
 sonarqube {
     properties {
-        property "sonar.java.jdkHome", project.findProperty('module.sonar.java.jdkHome')
+        property "sonar.java.jdkHome", project.findProperty('jdk8Home')
     }
 }
 
