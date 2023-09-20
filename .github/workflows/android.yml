@@ -30,4 +30,4 @@ jobs:
     - name: Check Sonar version
       run: curl https://sonarcloud.io/api/server/version
     - name: Run Sonar
-      run: ./gradlew sonar -Pmodule.sonar.java.jdkHome='echo $JAVA_HOME_8_TEMURIN' "-Dsonar.token=${{secrets.SONAR_TOKEN}}"
+      run: ./gradlew sonar -Pmodule.sonar.java.jdkHome='echo "JAVA_HOME_8_${env:RUNNER_ARCH}"' "-Dsonar.token=${{secrets.SONAR_TOKEN}}"
