@@ -28,12 +28,9 @@ jobs:
       run: ./gradlew build
     - name: Check Sonar version
       run: curl https://sonarcloud.io/api/server/version
-    - name: Check runner arch
-      run: |
-        echo "RUNNER_ARCH: ${{runner.arch}}"
     - name: Check JDK 8 path
       run: |
-        $envName = "JAVA_HOME_8_$($env:RUNNER_ARCH)"
+        $envName = "JAVA_HOME_8_${{runner.arch}}"
         echo "$envName"
         $JavaVersionPath = [System.Environment]::GetEnvironmentVariable($envName)
         echo "$JavaVersionPath"
