@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: set up JDKs
+    - name: Set up java versions
       uses: actions/setup-java@v3
       with:
         distribution: 'temurin'
@@ -30,9 +30,9 @@ jobs:
       run: curl https://sonarcloud.io/api/server/version
     - name: Check JDK 8 path
       run: |
-        $envName = "JAVA_HOME_8_${{runner.arch}}"
-        echo "$envName"
-        $JavaVersionPath = [System.Environment]::GetEnvironmentVariable($envName)
-        echo "$JavaVersionPath"
+        export ENV_NAME=JAVA_HOME_8_${{runner.arch}}
+        echo $ENV_NAME
+        export JAVA_VERSION_PATH = [System.Environment]::GetEnvironmentVariable($ENV_NAME)
+        echo $JAVA_VERSION_PATH
     - name: Run Sonar
       run: ./gradlew sonar -Pmodule.sonar.java.jdkHome='echo "JAVA_HOME_8_${env:RUNNER_ARCH}"' "-Dsonar.token=${{secrets.SONAR_TOKEN}}"
