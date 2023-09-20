@@ -30,6 +30,8 @@ jobs:
       run: curl https://sonarcloud.io/api/server/version
     - name: Check JDK 8 path
       run: |
+        export TEST=EXP
+        echo TEST
         export ENV_NAME=JAVA_HOME_8_${{runner.arch}}
         echo $ENV_NAME
         export JAVA_VERSION_PATH = [System.Environment]::GetEnvironmentVariable($ENV_NAME)
