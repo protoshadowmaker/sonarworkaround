@@ -13,11 +13,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: set up JDK 11
+    - name: set up JDKs
       uses: actions/setup-java@v3
       with:
-        java-version: '11'
         distribution: 'temurin'
+        java-version: |
+          8
+          11
+          17
         cache: gradle
 
     - name: Grant execute permission for gradlew
@@ -27,4 +30,4 @@ jobs:
     - name: Check Sonar version
       run: curl https://sonarcloud.io/api/server/version
     - name: Run Sonar
-      run: ./gradlew sonar "-Dsonar.token=${{secrets.SONAR_TOKEN}}"
+      run: ./gradlew sonar -Pmodule.sonar.java.jdkHome='echo $JAVA_HOME_8_TEMURIN' "-Dsonar.token=${{secrets.SONAR_TOKEN}}"

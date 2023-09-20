@@ -28,6 +28,12 @@ android {
     }
 }
 
+sonarqube {
+    properties {
+        property "sonar.java.jdkHome", project.findProperty('module.sonar.java.jdkHome')
+    }
+}
+
 dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
