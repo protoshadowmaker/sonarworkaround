@@ -28,13 +28,11 @@ jobs:
       run: ./gradlew build
     - name: Check Sonar version
       run: curl https://sonarcloud.io/api/server/version
-    - name: Check JDK 8 path
+    - name: Set up environment
       run: |
         export ENV_NAME="JAVA_HOME_8_${{runner.arch}}"
         echo "$ENV_NAME"
         export JAVA_VERSION_PATH=$(printenv $ENV_NAME)
         echo "$JAVA_VERSION_PATH"
-        export JAVA_VERSION_PATH = [System.Environment]::GetEnvironmentVariable($ENV_NAME)
-        echo $JAVA_VERSION_PATH
     - name: Run Sonar
       run: ./gradlew sonar -Pmodule.sonar.java.jdkHome='echo "JAVA_HOME_8_${env:RUNNER_ARCH}"' "-Dsonar.token=${{secrets.SONAR_TOKEN}}"
