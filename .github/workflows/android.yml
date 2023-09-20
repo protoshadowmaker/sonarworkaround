@@ -32,6 +32,8 @@ jobs:
       run: |
         export TEST="EXP"
         echo "$TEST"
+        export TEST2="EXP2"
+        echo "$TEST2"
         export ENV_NAME="JAVA_HOME_8_${{runner.arch}}"
         echo "$ENV_NAME"
         export JAVA_VERSION_PATH = [System.Environment]::GetEnvironmentVariable($ENV_NAME)
