@@ -30,7 +30,7 @@ jobs:
       run: curl https://sonarcloud.io/api/server/version
     - name: Check runner arch
       run: |
-        echo "RUNNER_ARCH: $env::RUNNER_ARCH"
+        echo "RUNNER_ARCH: $env:RUNNER_ARCH"
     - name: Check JDK 8 path
       run: |
         $envName = "JAVA_HOME_8_$($env:RUNNER_ARCH)"
