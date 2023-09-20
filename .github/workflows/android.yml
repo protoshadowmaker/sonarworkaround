@@ -30,9 +30,9 @@ jobs:
       run: curl https://sonarcloud.io/api/server/version
     - name: Set up environment
       run: |
-        export ENV_NAME="JAVA_HOME_8_${{runner.arch}}"
-        echo "$ENV_NAME"
-        export JAVA_VERSION_PATH=$(printenv $ENV_NAME)
-        echo "$JAVA_VERSION_PATH"
+        export JAVA_8_VERSION="JAVA_HOME_8_${{runner.arch}}"
+        echo "Java 8 version: $JAVA_8_VERSION"
+        export JAVA_8_PATH=$(printenv $JAVA_8_VERSION)
+        echo "Java 8 path: JAVA_8_PATH"
     - name: Run Sonar
-      run: ./gradlew sonar -Pmodule.sonar.java.jdkHome='echo "JAVA_HOME_8_${env:RUNNER_ARCH}"' "-Dsonar.token=${{secrets.SONAR_TOKEN}}"
+      run: ./gradlew sonar -Pmodule.sonar.java.jdkHome='echo "$JAVA_8_PATH"' "-Dsonar.token=${{secrets.SONAR_TOKEN}}"
